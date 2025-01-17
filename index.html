@@ -1,0 +1,1020 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>Practica3.5 - Desplegar una app Flask</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="cyan" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#practica-41-configuracion-de-un-servidor-dns" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="Practica3.5 - Desplegar una app Flask" class="md-header__button md-logo" aria-label="Practica3.5 - Desplegar una app Flask" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Practica3.5 - Desplegar una app Flask
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Práctica 4.1: Configuración de un servidor DNS
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://yahyalimouni.github.io" class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://yahyalimouni.github.io/practica2/" class="md-tabs__link">
+        
+  
+    
+  
+  Practica2.1
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://yahyalimouni.github.io/practica2.2/" class="md-tabs__link">
+        
+  
+    
+  
+  Practica2.2
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://yahyalimouni.github.io/practica2.3/" class="md-tabs__link">
+        
+  
+    
+  
+  Practica2.3
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://yahyalimouni.github.io/practica2.4/" class="md-tabs__link">
+        
+  
+    
+  
+  Practica2.4
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://yahyalimouni.github.io/practica2.5/" class="md-tabs__link">
+        
+  
+    
+  
+  Practica2.5
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://yahyalimouni.github.io/practica2.6/" class="md-tabs__link">
+        
+  
+    
+  
+  Practica2.6
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://yahyalimouni.github.io/practica3.4/" class="md-tabs__link">
+        
+  
+    
+  
+  Practica3.3.4
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://yahyalimouni.github.io/practica3.5/" class="md-tabs__link">
+        
+  
+    
+  
+  Practica3.5
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://yahyalimouni.github.io/practica-ampliacion/" class="md-tabs__link">
+        
+  
+    
+  
+  Practica-amp
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Practica3.5 - Desplegar una app Flask" class="md-nav__button md-logo" aria-label="Practica3.5 - Desplegar una app Flask" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Practica3.5 - Desplegar una app Flask
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://yahyalimouni.github.io" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://yahyalimouni.github.io/practica2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Practica2.1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://yahyalimouni.github.io/practica2.2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Practica2.2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://yahyalimouni.github.io/practica2.3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Practica2.3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://yahyalimouni.github.io/practica2.4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Practica2.4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://yahyalimouni.github.io/practica2.5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Practica2.5
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://yahyalimouni.github.io/practica2.6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Practica2.6
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://yahyalimouni.github.io/practica3.4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Practica3.3.4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://yahyalimouni.github.io/practica3.5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Practica3.5
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://yahyalimouni.github.io/practica-ampliacion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Practica-amp
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introducción
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instalacion-de-bind9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalación de Bind9:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#archivo-de-configuracion-principal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Archivo de configuración principal
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracion-general" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuración general
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#copia-de-seguridad" class="md-nav__link">
+    <span class="md-ellipsis">
+      Copia de seguridad
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lista-blanca-de-peticiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lista blanca de peticiones
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracion-del-servidor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuración del servidor
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zona-dns-principal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Zona DNS principal
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#archivo-de-zona" class="md-nav__link">
+    <span class="md-ellipsis">
+      Archivo de zona
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zona-dns-inversa" class="md-nav__link">
+    <span class="md-ellipsis">
+      Zona DNS inversa
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#archivo-de-zona-inversa" class="md-nav__link">
+    <span class="md-ellipsis">
+      Archivo de zona inversa
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comprobacion-del-funcionamiento-del-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comprobación del funcionamiento del DNS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comprobamos-las-resoluciones-de-nombre-con-dig" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comprobamos las resoluciones de nombre con dig
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cuestiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cuestiones
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cuestiones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cuestion-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cuestión 1:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cuestion-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cuestión 2:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cuestion-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cuestión 3:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cuestion-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cuestión 4:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cuestion-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cuestión 5:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cuestion-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cuestión 6:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cuestion-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cuestión 7:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cuestion-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cuestión 8:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cuestion-9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cuestión 9:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cuestion-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cuestión 10:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="practica-41-configuracion-de-un-servidor-dns">Práctica 4.1: Configuración de un servidor DNS</h1>
+<h2 id="introduccion">Introducción</h2>
+<p>En esta práctica se llevará a cabo la instalación y configuración del servidor de nombres bind9.</p>
+<p>Este tipo de servidores se encargan de resolver los nombres de dominio de las URL, actuando como un intermediario esencial. Su función es clave, ya que permite que las direcciones URL sean más fáciles de recordar, en lugar de utilizar direcciones numéricas complejas para identificar una máquina.</p>
+<h2 id="instalacion-de-bind9">Instalación de Bind9:</h2>
+<p>Nos conectamos mediante <code>SSH</code> a nuestro servidor usando el siguiente comando: </p>
+<p><img alt="" src="assets/00_ssh.png" /></p>
+<p>Primero actualizamos los paquetes de Debian:</p>
+<pre><code class="language-bash">    sudo apt update 
+    sudo apt upgrade
+</code></pre>
+<p>Para instalar Bind9 en Debian 12, utilizaremos el gestor de 
+paquetes del sistema, ya que está disponible en los repositorios. El comando que debemos ejecutar es el siguiente:</p>
+<pre><code class="language-bash">    sudo apt-get install bind9 bind9utils bind9-doc
+</code></pre>
+<p><img alt="" src="assets/01_instalar_bind.png" /></p>
+<p>Dado que en esta práctica y para el servidor de pruebas no vamos a necesitar IPV6, podemos desactivarla modificando los parámetros de inicio del servicio named, que es el nombre del servidor Bind9.</p>
+<p>Para ello, debemos editar el archivo /etc/default/named y agregar el parámetro -4 al final de la variable OPTIONS, tal como se muestra en la captura.</p>
+<p><img alt="" src="assets/02_default_named_.png" /></p>
+<h2 id="archivo-de-configuracion-principal">Archivo de configuración principal</h2>
+<p>Este archivo se encarga de agrupar los tres archivos de configuración principales del servidor Bind9. Generalmente, no es necesario modificarlo, ya que su función es incluir los diferentes archivos de configuración, los cuales son:</p>
+<ul>
+<li><strong>named.conf.options</strong>: Contiene las opciones generales del servidor Bind9.</li>
+<li><strong>named.conf.local</strong>: Define las zonas del servidor Bind9.</li>
+<li><strong>named.conf.default-zones</strong>: Contiene las zonas predeterminadas del servidor Bind9, como la de localhost y la de broadcast. Este archivo no será modificado en esta práctica.</li>
+</ul>
+<p><img alt="" src="assets/03_archivo_named_config_.png" /></p>
+<h2 id="configuracion-general">Configuración general</h2>
+<p>Antes de definir las zonas, es necesario hacer algunos cambios en el archivo de configuración general.</p>
+<h2 id="copia-de-seguridad">Copia de seguridad</h2>
+<p>Siempre que se modifican archivos de configuración, es recomendable guardar una copia de seguridad de la versión que funciona, por si necesitamos volver a ella. Esto se puede hacer con el siguiente comando:</p>
+<pre><code class="language-bash">sudo cp /etc/bind/named.conf.options /etc/bind/named.conf.options.backup
+</code></pre>
+<h2 id="lista-blanca-de-peticiones">Lista blanca de peticiones</h2>
+<p>En esta práctica, vamos a crear una lista blanca para permitir que solo ciertas redes puedan hacer consultas al servidor de nombres. Esto se hace usando el bloque acl, donde agregamos las direcciones de red permitidas junto con su máscara de red abreviada. El formato del bloque es el siguiente:</p>
+<pre><code class="language-bash">acl &quot;&lt;nombreAcl&gt;&quot; {
+    &lt;byte&gt;.&lt;byte&gt;.&lt;byte&gt;.&lt;byte&gt;/&lt;máscara&gt;;
+    //...
+};
+</code></pre>
+<p>En mi caso, lo he denominado <em>trusted</em>:</p>
+<p><img alt="" src="assets/05_bloque_acl_.png" /></p>
+<h2 id="configuracion-del-servidor">Configuración del servidor</h2>
+<p>La configuración que vamos a hacer es la siguiente:</p>
+<ol>
+<li>Primero, desactivamos las peticiones con IPV6. Aunque ya lo habíamos hecho antes, también lo tenemos que configurar aquí.</li>
+<li>Decimos que solo las redes de la lista blanca podrán hacer consultas recursivas a otros DNS para resolver nombres. Aún no les damos permiso para hacer estas consultas, solo indicamos quiénes pueden hacerlo.</li>
+<li>Configuramos el servidor para que ningún equipo que haga una petición a nuestro DNS pueda ser redirigido a otra zona diferente de la que está usando.</li>
+<li>Establecemos que el servidor Bind9 escuche en la IP y el puerto que hemos indicado.</li>
+<li>Permitimos las consultas recursivas en Bind9.</li>
+</ol>
+<p><img alt="" src="assets/06_bind_named_conf_.png" /></p>
+<p>Verificamos que toda la configuración esté correcta con el siguiente comando:</p>
+<pre><code class="language-bash">    sudo named-checkconf
+</code></pre>
+<p><img alt="" src="assets/07_comprobar_conf.png" /></p>
+<h2 id="zona-dns-principal">Zona DNS principal</h2>
+<p>Para definir las zonas nos dirigimos al archivo named.conf.local, y en dicho archivo debemos de usar el bloque zone{...}; para definir las diferentes zonas. La sintáxis es la siguiente:</p>
+<pre><code class="language-bash">zone &quot;&lt;nombre_zona&gt;&quot; {
+    type master;
+    file &quot;&lt;ruta_archivo_zona&gt;&quot;;
+}
+</code></pre>
+<p><img alt="" src="assets/08_named_conf.png" /></p>
+<h2 id="archivo-de-zona">Archivo de zona</h2>
+<p>Añadimos los registros correspondientes SOA, NS y un nuevo registro de tipo A. Este último indica que el subdominio "debian" se asociará con la IP que especifiquemos, y su sintaxis será de la siguiente forma: <code>&lt;subdominio&gt; IN A &lt;ip&gt;</code>.</p>
+<p><img alt="" src="assets/09_db_yahya_deaw-es.png" /></p>
+<h2 id="zona-dns-inversa">Zona DNS inversa</h2>
+<p>Para configurar la zona inversa, debemos usar una sintaxis especial que le indique al servidor DNS que esa zona se utilizará para resolver direcciones IP a nombres de dominio.</p>
+<p>El nombre de la zona será <code>&lt;dirección de red inversa sin los octetos de host&gt;.in-addr.arpa</code>. Aparte de esto, el proceso es igual al de crear una zona normal.</p>
+<p><img alt="" src="assets/10_zona_invertida_.png" /></p>
+<h2 id="archivo-de-zona-inversa">Archivo de zona inversa</h2>
+<p>Añadimos los registros correspondientes SOA, NS y un nuevo registro de tipo PTR.</p>
+<p>El registro PTR es el opuesto al registro A, ya que en lugar de vincular un nombre de dominio a una dirección IP, asocia una dirección IP con un nombre de dominio. La diferencia principal es que la dirección IP se invierte. Por ejemplo, si la IP es 192.168.1.10, en el registro PTR se escribe como 10.1.168.192. Además, como la zona se llama 1.168.192.in-addr.arpa (en mi caso), solo necesitamos colocar la parte de la dirección que corresponde al host, es decir, 10, sin tener que escribir toda la IP completa.</p>
+<p><img alt="" src="assets/11_db_invertida_es.png" /></p>
+<h2 id="comprobacion-del-funcionamiento-del-dns">Comprobación del funcionamiento del DNS</h2>
+<p>Comprobamos configuración</p>
+<p>Para comprobar que todo funciona correctamente tenemos que ejecutar los dos siguientes comandos, fijándonos si en las salidas de estos nos devuelven un OK.</p>
+<p><img alt="" src="assets/12_checking_both_dirs_.png" /></p>
+<p>Una vez tenemos OK en las dos zonas, podemos reiniciar el servicio de Bind9 para aplicar los cambios, esto se hace con el siguiente comando:</p>
+<pre><code class="language-bash">    sudo systemctl restart named
+</code></pre>
+<p><img alt="" src="assets/13_resrat_service_status.png" /></p>
+<h2 id="comprobamos-las-resoluciones-de-nombre-con-dig">Comprobamos las resoluciones de nombre con dig</h2>
+<p>Para comprobar que todo funciona correctamente primeramente debemos de configurar nuestro sistema para añadir el servidor DNS para que pregunte a este además del por defecto, en mi caso con Debian sería en la configuración de la red conectada.</p>
+<p><img alt="" src="assets/14_dns_Setup.png" /></p>
+<p>Ahora para ver si nos resuelve correctamente el nombre, debemos de usar el comando:</p>
+<pre><code class="language-bash">    dig &lt;subdominio o dominio&gt;
+</code></pre>
+<p><img alt="" src="assets/15_dig_dominio.png" /></p>
+<p>Ahora para ver si nos resuelve correctamente el nombre, debemos de usar el comando:</p>
+<pre><code class="language-bash"> dig -x &lt;ip&gt;
+</code></pre>
+<p><img alt="" src="assets/16_dig_x.png" /></p>
+<h2 id="cuestiones">Cuestiones</h2>
+<h3 id="cuestion-1">Cuestión 1:</h3>
+<p><em>¿Qué pasará si un cliente de una red diferente a la tuya intenta hacer uso de tu DNS de alguna manera, le funcionará?¿Por qué, en qué parte de la configuración puede verse?</em></p>
+<p>Si un cliente de una red diferente intenta usar el DNS de otra red, normalmente no funcionará. Esto ocurre porque el servidor DNS esta configurado para responder solo a las peticiones que vienen de su propia red.</p>
+<h3 id="cuestion-2">Cuestión 2:</h3>
+<p><em>¿Por qué tenemos que permitir las consultas recursivas en la configuración?</em></p>
+<p>Las consultas recursivas se permiten en la configuración de un servidor DNS porque simplifican y optimizan el proceso de resolución de nombres para los clientes. </p>
+<h3 id="cuestion-3">Cuestión 3:</h3>
+<p><em>El servidor DNS que acabáis de montar, ¿es autoritativo? ¿Por qué?</em></p>
+<p>El servidor DNS que se ha montado puede considerarse autoritativo porque actúa como la fuente definitiva de información para los dominios que gestiona.</p>
+<h3 id="cuestion-4">Cuestión 4:</h3>
+<p><em>¿Dónde podemos encontrar la directiva $ORIGIN y para qué sirve?</em></p>
+<p>La directiva $ORIGIN se encuentra en los ficheros de zona DNS y sirve para definir el dominio base que se añadirá automáticamente a los nombres incompletos en los registros de recursos.</p>
+<h3 id="cuestion-5">Cuestión 5:</h3>
+<p><em>¿Una zona es idéntico a un dominio?</em></p>
+<p>Un dominio es un nombre completo en la jerarquía DNS, como "daw.com", mientras que una zona es una porción del espacio de nombres DNS que está bajo el control administrativo de una entidad específica</p>
+<h3 id="cuestion-6">Cuestión 6:</h3>
+<p><em>¿Pueden editarse los archivos de zona de un servidor esclavo/secundario?</em></p>
+<p>Los archivos de zona de un servidor DNS esclavo o secundario no pueden editarse directamente. Estos archivos se generan automáticamente mediante transferencias de zona desde el servidor primario y son de solo lectura en el servidor secundario.</p>
+<h3 id="cuestion-7">Cuestión 7:</h3>
+<p><em>¿Por qué podría querer tener más de un servidor esclavo para una misma zona?</em></p>
+<p>Tener múltiples servidores esclavos para una misma zona DNS es una estrategia crucial para garantizar la disponibilidad continua del servicio DNS. Si por ejemplo falla un servidor, los otros servidores seguiran respondiendo a las consultas.</p>
+<h3 id="cuestion-8">Cuestión 8:</h3>
+<p><em>¿Cuántos servidores raíz existen?</em></p>
+<p>Existen 13 identificadores de servidores raíz (RSI) en el sistema DNS, pero el número real de servidores físicos es mucho mayor</p>
+<h3 id="cuestion-9">Cuestión 9:</h3>
+<p>¿Qué es una consulta iterativa de referencia?</p>
+<h3 id="cuestion-10">Cuestión 10:</h3>
+<p>Al que le indiquemos en el registro PTR de la zona DNS inversa.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.tabs", "navigation.top", "search.highlight", "search.share", "navigation.tracking"], "search": "assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+    
+  </body>
+</html>
