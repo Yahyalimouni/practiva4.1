@@ -14,7 +14,7 @@ nav:
 
 
 theme:
-  name: material  
+  name: material
   features:
     - navigation.tabs  
     - navigation.top  
